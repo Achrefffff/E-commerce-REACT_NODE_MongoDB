@@ -247,6 +247,16 @@ app.post('/removefromcart',fetchUser, async (req, res) => {
     await Users.findOneAndUpdate({_id:req.user.id}, {cartData: userData.cartData})
     res.send('Removed')
 })
+
+// gzt cart data
+app.post('/getcart', fetchUser, async (req, res) => {
+    console.log('GetCart');
+    let userData = await Users.findOne({_id:req.user.id})
+    res.json(userData.cartData)
+})
+
+//
+
 app.listen(port, (error) => {
     if (!error) {
         console.log('server running sur le port ' + port);
